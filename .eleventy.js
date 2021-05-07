@@ -52,6 +52,12 @@ module.exports = function(config) {
       .slice(0, site.maxPostsPerPage);
   });
 
+  config.addCollection('projects', collection => {
+    return [...collection.getFilteredByGlob('./src/projects/*.md').filter(livePosts)]
+      .reverse()
+      .slice(0, site.maxPostsPerPage);
+  });
+
   // Plugins
   config.addPlugin(rssPlugin);
   config.addPlugin(syntaxHighlight);
